@@ -27,7 +27,7 @@ def sayfa_no_ile_tara_ve_kaydet():
         return []
 
     resimler = [f for f in os.listdir(KARTELA_KLASORU) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
-    st.info(f"?? {len(resimler)} sayfa taran?yor...")
+    st.info(f"🔎 {len(resimler)} sayfa taranıyor...")
     progress_bar = st.progress(0)
     
     for i, dosya_adi in enumerate(resimler):
@@ -117,3 +117,4 @@ else:
                     st.metric(f"Sayfa - Kod: {r['kod']}", f"Delta-E: {r['de']:.1f}")
 
                     st.markdown(f'<div style="background:rgb{tuple(r["rgb"])};height:60px;border-radius:10px;border:2px solid #000"></div>', unsafe_allow_html=True)
+
