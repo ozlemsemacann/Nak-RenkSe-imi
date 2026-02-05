@@ -95,15 +95,15 @@ def en_yakin_bul(target_rgb, db, p_adj):
 
 # --- ARAYUZ ---
 if not os.path.exists(HAFIZA_DOSYASI):
-    st.button("?? SAYFA NO DESTEKL? TARAMAYI BA?LAT", on_click=sayfa_no_ile_tara_ve_kaydet)
+    st.button("🚀 SAYFA NO DESTEKLİ TARAMAYI BAŞLAT", on_click=sayfa_no_ile_tara_ve_kaydet)
 else:
     with open(HAFIZA_DOSYASI, "r") as f:
         db = json.load(f)
 
-    st.sidebar.button("??? Haf?zay? S?f?rla (Yeniden Tara)", on_click=lambda: os.remove(HAFIZA_DOSYASI) if os.path.exists(HAFIZA_DOSYASI) else None)
-    p_val = st.sidebar.slider("I??k Ayar?", 0.5, 1.5, 1.0)
+    st.sidebar.button("🗑️ Hafızayı Sıfırla (Yeniden Tara)", on_click=lambda: os.remove(HAFIZA_DOSYASI) if os.path.exists(HAFIZA_DOSYASI) else None)
+    p_val = st.sidebar.slider("Işık Ayarı", 0.5, 1.5, 1.0)
 
-    up = st.file_uploader("Analiz edilecek resmi yukle", type=["jpg", "png", "jpeg"])
+    up = st.file_uploader("Analiz edilecek resmi yükle", type=["jpg", "png", "jpeg"])
     if up:
         img_up = Image.open(up)
         coords = streamlit_image_coordinates(img_up, key="p")
@@ -115,4 +115,5 @@ else:
                 with cols[i]:
                     st.write(f"### %{r['score']:.1f} Uyum")
                     st.metric(f"Sayfa - Kod: {r['kod']}", f"Delta-E: {r['de']:.1f}")
+
                     st.markdown(f'<div style="background:rgb{tuple(r["rgb"])};height:60px;border-radius:10px;border:2px solid #000"></div>', unsafe_allow_html=True)
